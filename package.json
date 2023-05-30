@@ -1,0 +1,25 @@
+{
+  "name": "accuenergy_pre-interview_code",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite --host=0.0.0.0",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@element-plus/icons-vue": "^2.1.0",
+    "axios": "^1.4.0",
+    "element-plus": "^2.3.5",
+    "google": "^2.1.0",
+    "google-maps-api-loader": "^1.1.1",
+    "vue": "^3.3.2",
+    "vue-browser-geolocation": "^1.8.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.2.3",
+    "unplugin-auto-import": "^0.16.2",
+    "unplugin-vue-components": "^0.24.1",
+    "vite": "^4.3.5"
+  }
+}
