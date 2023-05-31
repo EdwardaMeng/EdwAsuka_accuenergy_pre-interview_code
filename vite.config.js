@@ -10,7 +10,11 @@ import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 export default defineConfig({
     server: {
         //使用IP能访问
-        host: '0.0.0.0'
+        host: '0.0.0.0',
+        https: {
+            key: 'key.pem',
+            cert: 'cert.pem'
+        }
     },
   plugins: [
       vue(),
