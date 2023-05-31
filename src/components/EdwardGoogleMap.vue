@@ -1,14 +1,23 @@
 <template>
-    <el-container style="text-align: center; padding: 0px; margin: 0px; align-items: center; display: flex" >
-        <el-main id="main" style="flex:1">
+    <el-container style="text-align: center; align-items: center; margin:0; height: 85vh; width: 95vw">
+        <el-main id="main" style=" max-width: 70vw; height: 750px; padding: 0">
             <div>
                 <input id="pac-input" type="text" placeholder="Search Box">
                 <div id="map"></div>
             </div>
         </el-main>
-        <el-aside id="rightElement" style="text-align: center; width: 500px; height: 800px;">
-            <div style="height: 400px; border: 1px whitesmoke solid" v-if="displayedMarkers.length > 0">
-                <table style="height:100%; width: 490px; text-align: left">
+        <el-aside id="rightElement" style="text-align: center; height: 795px; width: 400px; margin-left: 20px">
+            <div style="margin-bottom: 10px">
+                <el-button-group>
+                    <el-row :gutter="20">
+                        <el-button @click="deleteMarker"  type="primary" :icon="Delete">Delete</el-button>
+                        <el-button @click="deleteMarkers"  type="danger" :icon="Delete">Delete All Markers</el-button>
+                        <el-button @click="refreshPage"  type="primary" :icon="Refresh">Refresh</el-button>
+                    </el-row>
+                </el-button-group>
+            </div>
+            <div style="height: 420px; border: 1px whitesmoke solid">
+                <table style="height:100%; width: 100%; text-align: left;">
                     <tr v-for="marker in displayedMarkers" :key="marker.id">
                         <el-checkbox v-model="marker.checked" :label="marker.title" size="large"></el-checkbox>
                     </tr>
@@ -22,35 +31,28 @@
                     >
                     </el-pagination>
                 </div>
-                <div style="margin-top: 10px; margin-bottom: 10px">
-                    <el-button-group>
-                        <el-row :gutter="20">
-                            <el-button @click="deleteMarker" v-if="this.markers.length > 0" type="primary" :icon="Delete">Delete</el-button>
-                            <el-button @click="deleteMarkers" v-if="this.markers.length > 0" type="danger" :icon="Delete">Delete All Markers</el-button>
-                            <el-button @click="refreshPage" v-if="this.markers.length > 0" type="primary" :icon="Refresh">Refresh</el-button>
-                        </el-row>
-                    </el-button-group>
+                <div style="">
+                    <div style=" align-items: center; text-align:left; margin-top: 1px;">
+                        <el-card>
+                            <template #header>
+                                <span>Last Marker Info:</span>
+                            </template>
+                            <div>Name: {{ lastMarker.title }}</div>
+                            <div>Local Time: {{time}} {{ timeZone }} </div>
+                        </el-card>
+                    </div>
                 </div>
-            </div>
-            <div style="margin-top: 120px">
-                <div style=" align-items: center; text-align:left; margin-top: 10px;">
-                    <el-card v-if="this.markers.length > 0">
+                <div>
+                    <el-card style="justify-content: space-between; align-items: center; margin-top: 5px; text-align: left; ">
                         <template #header>
-                            <span>Last Marker Info:</span>
+                            <span>Your Current location is:</span>
                         </template>
-                        <div>Name: {{ lastMarker.title }}</div>
-                        <div v-if="timeZone">Local Time: {{time}} {{ timeZone }} </div>
+                        <div>{{ myLocation }}</div>
                     </el-card>
                 </div>
             </div>
-            <div>
-                <el-card v-if="myLocation" style="justify-content: space-between; align-items: center; margin-top: 10px; text-align: left; ">
-                    <template #header>
-                        <span>Your Current location is:</span>
-                    </template>
-                    <div>{{ myLocation }}</div>
-                </el-card>
-            </div>
+
+
 <!--            <div>{{markers.length}} {{displayedMarkers.length}}</div>-->
 
         </el-aside>
@@ -75,7 +77,7 @@ export default {
             itemsPerPage: 10,
             displayedMarkers: [],
             id: 0,
-            lastMarker: null,
+            lastMarker: '',
             timeZone: null,
             time:null,
             infoWindow: null,
@@ -298,8 +300,13 @@ export default {
             // this.displayedMarkers = this.markers.slice(startIndex, endIndex)
             if(this.markers.length > 0){
                 this.lastMarker = this.markers[this.markers.length-1]
+                this.getTimeZone()
             }
-            this.getTimeZone()
+            else{
+                this.lastMarker = ''
+                this.timeZone = null
+                this.time = null
+            }
 
         },
 
@@ -333,19 +340,12 @@ export default {
 
 <style>
 #map {
-    height: 750px;
+    height: 730px;
     width: 1300px;
-    padding: 0;
-    margin: 0;
 }
 #pac-input{
     height: 40px;
     width: 400px;
-}
-.pagination{
-    height: fit-content;
-    width: fit-content;
-
 }
 .custom-map-control-button {
     background-color: #fff;
@@ -385,19 +385,11 @@ table tr:nth-child(n+3):nth-child(-n+5) {
 table tr:nth-child(even) {
     background-color: #f2f2f2;
 }
-table{
-    width: 70%;
-    height: 100%;
-
-#rightElement{
-    background: black;
-    height: 100vh;
-    margin: 0px;
-    padding: 0px;
-}
+/*table {*/
+/*    width: 70%;*/
+/*    height: 100%;*/
+/*}*/
 #main{
-    align-items: center;
     background: white;
-}
 }
 </style>
