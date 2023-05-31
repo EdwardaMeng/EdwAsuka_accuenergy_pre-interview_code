@@ -20,11 +20,11 @@
             <p>This page is implemented by <b>Vue + Vite + Element Plus UI</b>.</p>
             <p>
                 It utilizes:
-            <ul>
-                <li>Google Maps JavaScript API</li>
-                <li>Google Geolocation API</li>
-                <li>Google Places API</li>
-            </ul>
+                <ul>
+                    <li>Google Maps JavaScript API</li>
+                    <li>Google Geolocation API</li>
+                    <li>Google Places API</li>
+                </ul>
             </p>
         </el-card>
         <el-card class="box-card">
