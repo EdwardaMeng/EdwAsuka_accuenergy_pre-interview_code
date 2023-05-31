@@ -1,12 +1,12 @@
 <template id="app">
-    <el-container style=" overflow: auto; max-height: 98vh; max-width: 99vw; align-items: center; padding: 0; margin: 0;">
-        <el-header id="el-header" style="display: flex; align-items: center; max-width: 98vw">
-            <el-icon style="margin-right: 20px" size="50px" @click="drawer = true"><Document /></el-icon>
+    <el-container style="max-height: 100%; max-width: 100%; align-items: center; padding: 0; margin: 0; height: 97vh; width: 100%">
+        <el-header id="el-header" style="display: flex; align-items: center; max-width: 100%;">
+            <el-icon style="margin-right: 20px" size="40px" @click="drawer = true"><Document /></el-icon>
             <el-divider direction="vertical"></el-divider>
-            <h1 style="margin-left: 20px;">A Simple Web Page with Geolocation and Map functions, click on the icon for more information =D</h1>
+            <h3 style="margin-left: 20px;">A Simple Web Page with Geolocation and Map functions, click on the icon for more information =D</h3>
         </el-header>
-        <el-divider></el-divider>
-        <el-main id="main" style=" overflow: auto; padding: 0; margin:0">
+        <el-divider style="max-width: 100%; margin-bottom:5px"></el-divider>
+        <el-main id="main" style="height:100%; width: 100%; max-height:100%; max-width: 100%; margin:0">
             <New></New>
         </el-main>
     </el-container>
@@ -74,11 +74,11 @@ const drawer = ref(false)
 
 <style scoped>
 #el-header{
-    height: 40px;
-    width: 100vw;
+    height: 10px;
+    width: 100%;
     background: white;
     padding: 0;
-    margin: 0;
+    margin-top: 8px;
 }
 .el-card{
     margin-bottom: 20px;
